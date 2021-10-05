@@ -1,0 +1,5 @@
+CREATE TABLE IF NOT EXISTS `account` (
+`id` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+`identifier` varchar(32),
+`createdAt` BIGINT default UNIX_TIMESTAMP(NOW())
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8;
