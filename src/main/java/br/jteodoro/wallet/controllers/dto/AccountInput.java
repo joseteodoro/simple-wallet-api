@@ -1,4 +1,4 @@
-package br.jteodoro.wallet.models;
+package br.jteodoro.wallet.controllers.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,9 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Account {
-    
-    private Long accountId;
+public class AccountInput {
 
     private String identifier;
 

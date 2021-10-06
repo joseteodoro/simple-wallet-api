@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.jteodoro.wallet.controllers.dto.AccountInput;
 import br.jteodoro.wallet.models.Account;
 import br.jteodoro.wallet.repositories.AccountRepository;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +20,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class AccountController {
 
-    private AccountRepository repository;
+    private final AccountRepository repository;
 
     @GetMapping(value = "/:accountId", produces = "application/json")
     public ResponseEntity<Account> findOne(@RequestParam(required = true) Integer accountId) {
@@ -28,7 +29,7 @@ public class AccountController {
 
     @Transactional
     @PostMapping(value = "/", consumes = "application/json", produces = "application/json")
-    public ResponseEntity<Account> create(@RequestBody Account payload) {
+    public ResponseEntity<Account> create(@RequestBody AccountInput payload) {
         return ResponseController.process(() -> this.repository.create(payload).get(), HttpStatus.CREATED);
     }
 }

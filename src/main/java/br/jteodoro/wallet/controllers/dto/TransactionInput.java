@@ -1,26 +1,21 @@
-package br.jteodoro.wallet.models;
+package br.jteodoro.wallet.controllers.dto;
 
-import java.util.Objects;
-
+import br.jteodoro.wallet.models.AccountOperationEnum;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Builder
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Transaction {
-
-    private Long transactionId;
+public class TransactionInput {
 
     private Long accountId;
 
     private AccountOperationEnum operation;
 
     private Float value;
-
-    private String uuid;
 
 }

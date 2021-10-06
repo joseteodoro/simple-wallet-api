@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.jteodoro.wallet.controllers.dto.TransactionInput;
 import br.jteodoro.wallet.models.Transaction;
 import br.jteodoro.wallet.repositories.TransactionRepository;
 import lombok.RequiredArgsConstructor;
@@ -21,11 +22,11 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class TransactionController {
 
-    private TransactionRepository repository;
+    private final TransactionRepository repository;
  
     @Transactional
     @PostMapping(value = "/", consumes = "application/json", produces = "application/json")
-    public ResponseEntity<Transaction> create(@RequestBody Transaction payload) {
+    public ResponseEntity<Transaction> create(@RequestBody TransactionInput payload) {
         return ResponseController.process(() -> this.repository.create(payload).get(), HttpStatus.CREATED);
     }
 
