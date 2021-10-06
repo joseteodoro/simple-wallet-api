@@ -5,6 +5,7 @@ CREATE TABLE IF NOT EXISTS `wallet`.`trx` (
 `operation_id` int not null,
 `account_id` int not null,
 `createdAt` BIGINT not null default UNIX_TIMESTAMP(NOW()),
-CONSTRAINT fk_trx_account FOREIGN KEY (account_id) REFERENCES account(account_id),
-CONSTRAINT fk_trx_operation FOREIGN KEY (operation_id) REFERENCES operation(operation_id)
+`updatedAt` BIGINT not null default UNIX_TIMESTAMP(NOW()) ON UPDATE UNIX_TIMESTAMP(NOW()),
+CONSTRAINT fk_trx_account FOREIGN KEY (account_id) REFERENCES wallet.account(account_id),
+CONSTRAINT fk_trx_operation FOREIGN KEY (operation_id) REFERENCES wallet.operation(operation_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8;
