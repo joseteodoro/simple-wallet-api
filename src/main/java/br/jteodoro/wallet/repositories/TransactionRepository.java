@@ -29,7 +29,7 @@ public class TransactionRepository {
             return Optional.empty();
         }
 
-        long pk = this.persistence.executeInsert(INSERT, pst -> {
+        long pk = this.persistence.executeInsert(INSERT, "trxId" , pst -> {
             pst.setFloat(1, trx.getValue());
             pst.setLong(2, trx.getOperation().getId());
             pst.setLong(3, trx.getAccountId());

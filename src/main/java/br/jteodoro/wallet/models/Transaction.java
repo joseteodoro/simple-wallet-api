@@ -2,9 +2,11 @@ package br.jteodoro.wallet.models;
 
 import java.util.Objects;
 
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Builder
@@ -13,14 +15,19 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Transaction {
 
-    private Long transactionId;
+    private Long trxId;
 
     private Long accountId;
 
-    private AccountOperationEnum operation;
+    @Getter(value = AccessLevel.NONE)
+    private Long operationId;
 
     private Float value;
 
     private String uuid;
+
+    public AccountOperationEnum getOperation() {
+        return AccountOperationEnum.of(this.operationId);
+    }
 
 }

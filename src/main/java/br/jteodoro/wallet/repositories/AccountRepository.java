@@ -23,7 +23,7 @@ public class AccountRepository {
 
     private static final String FIND_BY_ID = "select * from `wallet`.`account` where accountId = :pk";
 
-    private static final String INSERT = "insert into `wallet`.`account` (accountId) values (?)";
+    private static final String INSERT = "insert into `wallet`.`account` (identifier) values (?);";
 
     private final PersistenceFactory persistence;
 
@@ -32,7 +32,7 @@ public class AccountRepository {
             return Optional.empty();
         }
 
-        long pk = this.persistence.executeInsert(INSERT, pst -> {
+        long pk = this.persistence.executeInsert(INSERT, "accountId" , pst -> {
             pst.setString(1, account.getIdentifier());
         });
         return findOne(pk);

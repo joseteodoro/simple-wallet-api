@@ -1,10 +1,13 @@
 package br.jteodoro.wallet.repositories;
 
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -12,6 +15,7 @@ import java.util.stream.Collectors;
 import javax.sql.DataSource;
 
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.PreparedStatementSetter;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -32,15 +36,15 @@ public class PersistenceFactory {
 
     private final JdbcTemplate template;
 
-    public long executeInsert(String insert, UnsafeDBConsumer<PreparedStatement> populateFields) {
+    public long executeInsert(String insert, String pkField, UnsafeDBConsumer<PreparedStatement> populateFields) {
         KeyHolder keyHolder = new GeneratedKeyHolder();
         this.template.update(connection -> {
-                PreparedStatement ps = connection.prepareStatement(insert);
-                populateFields.accept(ps);
-                return ps;
-            }, keyHolder);
-    
-        return (long) keyHolder.getKey();
+            PreparedStatement ps = connection.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
+            populateFields.accept(ps);
+            return ps;
+        }, keyHolder);
+        
+        return Long.valueOf(keyHolder.getKeys().get(pkField).toString());
     }
 
     public <T> T findOne(String query, SqlParameterSource namedParameters, RowMapper<T> mapper) {
