@@ -1,11 +1,11 @@
 CREATE TABLE IF NOT EXISTS `wallet`.`trx` (
-`trx_id` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+`trxId` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
 `uuid` varchar(64) not null default UUID(),
-`value` BIGINT not null,
-`operation_id` int not null,
-`account_id` int not null,
+`value` DECIMAL(18,2) not null,
+`operationId` int not null,
+`accountId` int not null,
 `createdAt` BIGINT not null default UNIX_TIMESTAMP(NOW()),
 `updatedAt` BIGINT not null default UNIX_TIMESTAMP(NOW()) ON UPDATE UNIX_TIMESTAMP(NOW()),
-CONSTRAINT fk_trx_account FOREIGN KEY (account_id) REFERENCES wallet.account(account_id),
-CONSTRAINT fk_trx_operation FOREIGN KEY (operation_id) REFERENCES wallet.operation(operation_id)
+CONSTRAINT fk_trx_account FOREIGN KEY (accountId) REFERENCES wallet.account(accountId),
+CONSTRAINT fk_trx_operation FOREIGN KEY (operationId) REFERENCES wallet.operation(operationId)
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8;
