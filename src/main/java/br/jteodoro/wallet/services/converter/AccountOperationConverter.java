@@ -4,13 +4,13 @@ import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.type.TypeFactory;
 import com.fasterxml.jackson.databind.util.Converter;
 
-import br.jteodoro.wallet.models.AccountOperation;
+import br.jteodoro.wallet.models.AccountOperationEnum;
 
-public class AccountOperationConverter implements Converter<Long, AccountOperation> {
+public class AccountOperationConverter implements Converter<Long, AccountOperationEnum> {
 
     @Override
-    public AccountOperation convert(Long id) {
-        return AccountOperation.of(id);
+    public AccountOperationEnum convert(Long id) {
+        return AccountOperationEnum.of(id);
     }
 
     @Override
@@ -20,7 +20,7 @@ public class AccountOperationConverter implements Converter<Long, AccountOperati
 
     @Override
     public JavaType getOutputType(TypeFactory typeFactory) {
-        return typeFactory.constructType(AccountOperation.class);
+        return typeFactory.constructType(AccountOperationEnum.class);
     }
 
 }

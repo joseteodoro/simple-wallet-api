@@ -2,7 +2,7 @@ package br.jteodoro.wallet.models;
 
 import java.util.Arrays;
 
-public enum AccountOperation {
+public enum AccountOperationEnum {
     
     COMPRA_A_VISTA(1l, "COMPRA A VISTA"),
     COMPRA_PARCELADA(2l, "COMPRA PARCELADA"),
@@ -13,12 +13,12 @@ public enum AccountOperation {
 
     private String naturalKey;
 
-    private AccountOperation(Long id, String naturalKey) {
+    private AccountOperationEnum(Long id, String naturalKey) {
         this.id = id;
         this.naturalKey = naturalKey;
     }
 
-    public static AccountOperation of(Long id) {
+    public static AccountOperationEnum of(Long id) {
         return Arrays.stream(values()).filter(p -> p.id.equals(id))
             .findFirst().orElse(null);
     }

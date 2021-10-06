@@ -7,7 +7,7 @@ public class Transaction {
 
     private Long accountId;
 
-    private AccountOperation operation;
+    private AccountOperationEnum operation;
 
     private Float value;
 

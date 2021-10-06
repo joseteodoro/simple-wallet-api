@@ -10,18 +10,19 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.jteodoro.wallet.controllers.dto.CreateAccountPayload;
+import br.jteodoro.wallet.models.Account;
 
 @RestController
 @RequestMapping("/v1/accounts")
-public class Account {
+public class AccountController {
 
     @GetMapping(value = "/", produces = "application/json")
-    public ResponseEntity findOne(@RequestParam Integer accountId) {
+    public ResponseEntity<Account> findOne(@RequestParam(required = true) Integer accountId) {
         return null;
     }
     
     @PostMapping(value = "/", consumes = "application/json", produces = "application/json")
-    public ResponseEntity create(@RequestBody CreateAccountPayload payload) {
+    public ResponseEntity<Account> create(@RequestBody Account payload) {
         return null;
     }
 }
