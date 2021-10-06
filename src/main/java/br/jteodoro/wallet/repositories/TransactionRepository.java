@@ -25,10 +25,6 @@ public class TransactionRepository {
     private final PersistenceFactory persistence;
 
     public Optional<Transaction> create(TransactionInput trx) {
-        if (!trx.getOperation().isValid(trx.getValue())) {
-            return Optional.empty();
-        }
-
         long pk = this.persistence.executeInsert(INSERT, "trxId" , pst -> {
             pst.setFloat(1, trx.getValue());
             pst.setLong(2, trx.getOperation().getId());

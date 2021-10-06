@@ -5,21 +5,21 @@ import java.util.function.Predicate;
 
 public enum AccountOperationEnum {
     
-    COMPRA_A_VISTA(1l, "COMPRA A VISTA", f -> f < 0),
-    COMPRA_PARCELADA(2l, "COMPRA PARCELADA", f -> f < 0),
-    SAQUE(3l, "SAQUE", f -> f < 0),
-    PAGAMENTO(4l, "PAGAMENTO", f -> f > 0);
+    COMPRA_A_VISTA(1l, "COMPRA A VISTA", Op.DEBITO),
+    COMPRA_PARCELADA(2l, "COMPRA PARCELADA", Op.DEBITO),
+    SAQUE(3l, "SAQUE", Op.DEBITO),
+    PAGAMENTO(4l, "PAGAMENTO", Op.CREDITO);
 
     private Long id;
 
     private String naturalKey;
 
-    private Predicate<Float> validation;
+    private int op;
 
-    private AccountOperationEnum(Long id, String naturalKey, Predicate<Float> validation) {
+    private AccountOperationEnum(Long id, String naturalKey, int op) {
         this.id = id;
         this.naturalKey = naturalKey;
-        this.validation = validation;
+        this.op = op;
     }
 
     public static AccountOperationEnum of(Long id) {
@@ -35,8 +35,8 @@ public enum AccountOperationEnum {
         return naturalKey;
     }
 
-    public boolean isValid(Float value) {
-        return this.validation.test(value);
+    public float applyOp(float value) {
+        return value * op;
     }
 
 }

@@ -18,4 +18,7 @@ public class TransactionInput {
 
     private Float value;
 
+    public Float getValue() {
+        return operation.applyOp(this.value);
+    }
 }

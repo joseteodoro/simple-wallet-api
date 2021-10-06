@@ -30,4 +30,8 @@ public class Transaction {
         return AccountOperationEnum.of(this.operationId);
     }
 
+    public Float getValue() {
+        return getOperation().applyOp(this.value);
+    }
+
 }
