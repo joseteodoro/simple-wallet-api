@@ -1,6 +1,6 @@
 # Simple Wallet Application
 
-REST API to manage accounts and transactions for those accounts.
+REST API to manage accounts and their transactions.
 
 This projects uses H2 (as test database), Lombok, flyway (to run migrations),
 jdk11, swagger ui, springboot, and springboot jdbc template.
