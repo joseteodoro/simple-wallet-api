@@ -2,7 +2,7 @@
 
 REST API to manage accounts and their transactions.
 
-This projects uses H2 (as test database), Lombok, flyway (to run migrations),
+This project uses H2 (as test database), Lombok, flyway (to run migrations),
 jdk11, swagger ui, springboot, and springboot jdbc template.
 
 ## Testing
