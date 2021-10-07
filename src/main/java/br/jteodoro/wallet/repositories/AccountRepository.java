@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -41,11 +42,17 @@ public class AccountRepository {
     public Optional<Account> findOne(long pk) {
         SqlParameterSource namedParameters = new MapSqlParameterSource()
             .addValue("pk", pk);
-        return Optional.ofNullable(this.persistence.findOne(
-            FIND_BY_ID,
-            namedParameters,
-            new BeanPropertyRowMapper<>(Account.class)
-        ));
+        // should be a better way to avoid flow control by exceptions!
+        // but I dont want to hit database twice
+        try {
+            return Optional.ofNullable(this.persistence.findOne(
+                FIND_BY_ID,
+                namedParameters,
+                new BeanPropertyRowMapper<>(Account.class)
+            ));
+        } catch (EmptyResultDataAccessException notFount) {
+            return Optional.empty();
+        }
     }
 
 }

@@ -1,5 +1,7 @@
 package br.jteodoro.wallet.controllers;
 
+import java.util.Optional;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,7 +26,11 @@ public class AccountController {
     private final AccountRepository repository;
 
     @GetMapping(value = "/{accountId}", produces = "application/json")
-    public ResponseEntity<Account> findOne(@PathVariable(required = true) Integer accountId) {
+    public ResponseEntity<Account> findOne(@PathVariable(required = true) Long accountId) {
+        Optional<?> found = this.repository.findOne(accountId);
+        if (found.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
         return ResponseController.process(() -> this.repository.findOne(accountId).get());
     }
 

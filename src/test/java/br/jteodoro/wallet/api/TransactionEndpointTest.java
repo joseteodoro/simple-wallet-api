@@ -154,4 +154,28 @@ public class TransactionEndpointTest {
             .andExpect(jsonPath("$.[1].operation").value("COMPRA_A_VISTA"));
     }
 
+    @Test
+    public void whenCreatingTrxsForUnexistentAccountShouldReturn404() throws Exception {
+        String credit = String.join("",
+          "{",
+          "\"accountId\": 400004000040004,",
+          "\"operation\": ", "\"PAGAMENTO\"", ",",
+          "\"value\": 23.15",
+          "}"
+        );
+        mvc.perform(post("/v1/transactions")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(credit)
+            .accept(MediaType.APPLICATION_JSON)
+        )
+        .andExpect(status().isNotFound());
+    }
+
+    @Test
+    public void whenGettingTrxsFromUnexistentAccountShouldReturn404() throws Exception {
+        mvc.perform(get("/v1/transactions/40404040404")
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNotFound());
+    }
+
 }

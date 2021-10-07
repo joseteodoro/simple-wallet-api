@@ -43,7 +43,7 @@ public class TransactionRepository {
         ));
     }
 
-    public List<Transaction> listBy(Integer accountId) {
+    public List<Transaction> listBy(Long accountId) {
         SqlParameterSource namedParameters = new MapSqlParameterSource()
             .addValue("account", accountId);
 

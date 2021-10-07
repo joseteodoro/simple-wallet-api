@@ -36,7 +36,7 @@ public class HealthCheckTests {
     }
 
     @Test
-    public void given_liveness_probe_when_get_then_status200()
+    public void givenlivenessProbeWhenGetThenStatus200()
             throws Exception {
         mvc.perform(get("/actuator/health")
                 .contentType(MediaType.APPLICATION_JSON))
@@ -44,7 +44,7 @@ public class HealthCheckTests {
     }
 
     @Test
-    public void given_swagger_when_get_then_status200()
+    public void givenSwaggerWhenGetThenStatus200()
             throws Exception {
         mvc.perform(get("/swagger-ui.html")
                 .contentType(MediaType.APPLICATION_JSON))

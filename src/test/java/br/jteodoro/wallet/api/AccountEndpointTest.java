@@ -78,4 +78,11 @@ public class AccountEndpointTest {
                 .andExpect(jsonPath("$.identifier").value(uuid));
     }
 
+    @Test
+    public void whenGettingAUnexistentccountShouldReturn404() throws Exception {
+        mvc.perform(get("/v1/accounts/" + 404040404)
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNotFound());
+    }
+
 }
