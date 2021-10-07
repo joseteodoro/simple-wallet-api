@@ -1,0 +1,907 @@
+{
+	"info": {
+		"_postman_id": "067df874-4aa5-4d09-8af2-088f4deedcc0",
+		"name": "wallet",
+		"description": "Api Documentation",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "v1",
+			"item": [
+				{
+					"name": "accounts",
+					"item": [
+						{
+							"name": "create",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"identifier\": \"enim consectetur sit\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v1/accounts",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"accounts"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"identifier\": \"enim consectetur sit\"\n}"
+										},
+										"url": {
+											"raw": "{{baseUrl}}/v1/accounts",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"v1",
+												"accounts"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n \"accountId\": -57880194,\n \"accountUuid\": \"amet rep\",\n \"identifier\": \"sit ex\"\n}"
+								},
+								{
+									"name": "Created",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"identifier\": \"enim consectetur sit\"\n}"
+										},
+										"url": {
+											"raw": "{{baseUrl}}/v1/accounts",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"v1",
+												"accounts"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Unauthorized",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"identifier\": \"enim consectetur sit\"\n}"
+										},
+										"url": {
+											"raw": "{{baseUrl}}/v1/accounts",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"v1",
+												"accounts"
+											]
+										}
+									},
+									"status": "Unauthorized",
+									"code": 401,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Forbidden",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"identifier\": \"enim consectetur sit\"\n}"
+										},
+										"url": {
+											"raw": "{{baseUrl}}/v1/accounts",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"v1",
+												"accounts"
+											]
+										}
+									},
+									"status": "Forbidden",
+									"code": 403,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Not Found",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"identifier\": \"enim consectetur sit\"\n}"
+										},
+										"url": {
+											"raw": "{{baseUrl}}/v1/accounts",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"v1",
+												"accounts"
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						},
+						{
+							"name": "findOne",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/v1/accounts/:accountId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"accounts",
+										":accountId"
+									],
+									"variable": [
+										{
+											"key": "accountId",
+											"value": "-90830941",
+											"description": "(Required) accountId"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/v1/accounts/:accountId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"v1",
+												"accounts",
+												":accountId"
+											],
+											"variable": [
+												{
+													"key": "accountId"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n \"accountId\": -57880194,\n \"accountUuid\": \"amet rep\",\n \"identifier\": \"sit ex\"\n}"
+								},
+								{
+									"name": "Unauthorized",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/v1/accounts/:accountId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"v1",
+												"accounts",
+												":accountId"
+											],
+											"variable": [
+												{
+													"key": "accountId"
+												}
+											]
+										}
+									},
+									"status": "Unauthorized",
+									"code": 401,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Forbidden",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/v1/accounts/:accountId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"v1",
+												"accounts",
+												":accountId"
+											],
+											"variable": [
+												{
+													"key": "accountId"
+												}
+											]
+										}
+									},
+									"status": "Forbidden",
+									"code": 403,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Not Found",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/v1/accounts/:accountId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"v1",
+												"accounts",
+												":accountId"
+											],
+											"variable": [
+												{
+													"key": "accountId"
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "transactions",
+					"item": [
+						{
+							"name": "{account Id}",
+							"item": [
+								{
+									"name": "findByAccountId",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/v1/transactions/:accountId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"v1",
+												"transactions",
+												":accountId"
+											],
+											"variable": [
+												{
+													"key": "accountId",
+													"value": "-90830941",
+													"description": "(Required) accountId"
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/v1/transactions/:accountId",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"v1",
+														"transactions",
+														":accountId"
+													],
+													"variable": [
+														{
+															"key": "accountId"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "[\n {\n  \"accountId\": -15753861,\n  \"operation\": \"COMPRA_PARCELADA\",\n  \"trxId\": 53348034,\n  \"value\": -5196861.52590096\n },\n {\n  \"accountId\": -57689892,\n  \"operation\": \"COMPRA_A_VISTA\",\n  \"trxId\": 29261370,\n  \"value\": 88328228.2856895\n }\n]"
+										},
+										{
+											"name": "Unauthorized",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/v1/transactions/:accountId",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"v1",
+														"transactions",
+														":accountId"
+													],
+													"variable": [
+														{
+															"key": "accountId"
+														}
+													]
+												}
+											},
+											"status": "Unauthorized",
+											"code": 401,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "Forbidden",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/v1/transactions/:accountId",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"v1",
+														"transactions",
+														":accountId"
+													],
+													"variable": [
+														{
+															"key": "accountId"
+														}
+													]
+												}
+											},
+											"status": "Forbidden",
+											"code": 403,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "Not Found",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/v1/transactions/:accountId",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"v1",
+														"transactions",
+														":accountId"
+													],
+													"variable": [
+														{
+															"key": "accountId"
+														}
+													]
+												}
+											},
+											"status": "Not Found",
+											"code": 404,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								},
+								{
+									"name": "balanceByAccountId",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/v1/transactions/:accountId/balance",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"v1",
+												"transactions",
+												":accountId",
+												"balance"
+											],
+											"variable": [
+												{
+													"key": "accountId",
+													"value": "-90830941",
+													"description": "(Required) accountId"
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/v1/transactions/:accountId/balance",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"v1",
+														"transactions",
+														":accountId",
+														"balance"
+													],
+													"variable": [
+														{
+															"key": "accountId"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n \"accountId\": 23253221,\n \"balance\": -97031128.50652072\n}"
+										},
+										{
+											"name": "Unauthorized",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/v1/transactions/:accountId/balance",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"v1",
+														"transactions",
+														":accountId",
+														"balance"
+													],
+													"variable": [
+														{
+															"key": "accountId"
+														}
+													]
+												}
+											},
+											"status": "Unauthorized",
+											"code": 401,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "Forbidden",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/v1/transactions/:accountId/balance",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"v1",
+														"transactions",
+														":accountId",
+														"balance"
+													],
+													"variable": [
+														{
+															"key": "accountId"
+														}
+													]
+												}
+											},
+											"status": "Forbidden",
+											"code": 403,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "Not Found",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/v1/transactions/:accountId/balance",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"v1",
+														"transactions",
+														":accountId",
+														"balance"
+													],
+													"variable": [
+														{
+															"key": "accountId"
+														}
+													]
+												}
+											},
+											"status": "Not Found",
+											"code": 404,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "create",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"accountId\": 58094792,\n    \"operation\": \"COMPRA_A_VISTA\",\n    \"value\": -67555668.93935217\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v1/transactions",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"transactions"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"accountId\": 58094792,\n    \"operation\": \"COMPRA_A_VISTA\",\n    \"value\": -67555668.93935217\n}"
+										},
+										"url": {
+											"raw": "{{baseUrl}}/v1/transactions",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"v1",
+												"transactions"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n \"accountId\": 26181914,\n \"operation\": \"PAGAMENTO\",\n \"trxId\": -73655817,\n \"value\": -2279610.8432294726\n}"
+								},
+								{
+									"name": "Created",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"accountId\": 58094792,\n    \"operation\": \"COMPRA_A_VISTA\",\n    \"value\": -67555668.93935217\n}"
+										},
+										"url": {
+											"raw": "{{baseUrl}}/v1/transactions",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"v1",
+												"transactions"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Unauthorized",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"accountId\": 58094792,\n    \"operation\": \"COMPRA_A_VISTA\",\n    \"value\": -67555668.93935217\n}"
+										},
+										"url": {
+											"raw": "{{baseUrl}}/v1/transactions",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"v1",
+												"transactions"
+											]
+										}
+									},
+									"status": "Unauthorized",
+									"code": 401,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Forbidden",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"accountId\": 58094792,\n    \"operation\": \"COMPRA_A_VISTA\",\n    \"value\": -67555668.93935217\n}"
+										},
+										"url": {
+											"raw": "{{baseUrl}}/v1/transactions",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"v1",
+												"transactions"
+											]
+										}
+									},
+									"status": "Forbidden",
+									"code": 403,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Not Found",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"accountId\": 58094792,\n    \"operation\": \"COMPRA_A_VISTA\",\n    \"value\": -67555668.93935217\n}"
+										},
+										"url": {
+											"raw": "{{baseUrl}}/v1/transactions",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"v1",
+												"transactions"
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "//localhost:8080/",
+			"type": "string"
+		}
+	]
+}
