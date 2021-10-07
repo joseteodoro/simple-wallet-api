@@ -24,8 +24,6 @@ public class Transaction {
 
     private Float value;
 
-    private String uuid;
-
     public AccountOperationEnum getOperation() {
         return AccountOperationEnum.of(this.operationId);
     }

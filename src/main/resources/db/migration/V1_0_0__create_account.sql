@@ -3,6 +3,6 @@ CREATE SCHEMA IF NOT EXISTS `wallet`;
 CREATE TABLE IF NOT EXISTS `wallet`.`account` (
 `accountId` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
 `identifier` varchar(255),
-`createdAt` BIGINT not null default UNIX_TIMESTAMP(NOW()),
-`updatedAt` BIGINT not null default UNIX_TIMESTAMP(NOW()) ON UPDATE UNIX_TIMESTAMP(NOW())
+`createdAt` timestamp not null default NOW(),
+`updatedAt` timestamp not null default NOW() ON UPDATE NOW()
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8;
