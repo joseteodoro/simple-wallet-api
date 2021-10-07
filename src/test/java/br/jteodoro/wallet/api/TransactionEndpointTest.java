@@ -180,4 +180,21 @@ public class TransactionEndpointTest {
                 .andExpect(status().isNotFound());
     }
 
+    @Test
+    public void whenHaveValidTrxsShouldGetBalanceProperly() throws Exception {
+        String accountId = createRandomAccount();
+        createTrx(accountId, "1000.00", "PAGAMENTO");
+        createTrx(accountId, "100.00", "PAGAMENTO");
+        createTrx(accountId, "100.00", "SAQUE");
+        createTrx(accountId, "100.50", "COMPRA_A_VISTA");
+        createTrx(accountId, "0.50", "PAGAMENTO");
+        createTrx(accountId, "500.00", "COMPRA_PARCELADA");
+
+        mvc.perform(get("/v1/transactions/" + accountId + "/balance")
+            .contentType(MediaType.APPLICATION_JSON))
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$.accountId").value(accountId))
+            .andExpect(jsonPath("$.balance").value(400));
+    }
+
 }

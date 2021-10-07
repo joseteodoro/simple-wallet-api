@@ -15,7 +15,4 @@ public class AccountInput {
 
     private String identifier;
 
-    @Setter(value = AccessLevel.NONE)
-    private final String accountUuid = UUID.randomUUID().toString();
-
 }

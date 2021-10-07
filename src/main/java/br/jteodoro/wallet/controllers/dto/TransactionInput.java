@@ -20,9 +20,6 @@ public class TransactionInput {
 
     private Float value;
 
-    @Setter(value = AccessLevel.NONE)
-    private final String transactionUuid = UUID.randomUUID().toString();
-
     public Float getValue() {
         return operation.applyOp(this.value);
     }

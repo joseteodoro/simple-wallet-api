@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.jteodoro.wallet.controllers.dto.TransactionInput;
+import br.jteodoro.wallet.models.AccountBalance;
 import br.jteodoro.wallet.models.Transaction;
 import br.jteodoro.wallet.repositories.AccountRepository;
 import br.jteodoro.wallet.repositories.TransactionRepository;
@@ -48,6 +49,16 @@ public class TransactionController {
         }
 
         return ResponseController.process(() -> this.repository.listBy(accountId));
+    }
+
+    @GetMapping(value = "/{accountId}/balance", produces = "application/json")
+    public ResponseEntity<AccountBalance> balanceByAccountId(@PathVariable(required = true) Long accountId) {
+        Optional<?> found = this.accountRepository.findOne(accountId);
+        if (found.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+
+        return ResponseController.process(() -> this.repository.balanceBy(accountId).get());
     }
     
 }

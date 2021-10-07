@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.UUID;
 
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -32,14 +33,15 @@ public class AccountRepository {
             return Optional.empty();
         }
 
+        String uuid = UUID.randomUUID().toString();
         MapSqlParameterSource parameters = new MapSqlParameterSource()
             .addValue("identifier", account.getIdentifier())
-            .addValue("accountUuid", account.getAccountUuid());
+            .addValue("accountUuid", uuid);
 
         this.persistence.executeInsert(INSERT, parameters);
         
         SqlParameterSource namedParameters = new MapSqlParameterSource()
-            .addValue("uuid", account.getAccountUuid());
+            .addValue("uuid", uuid);
     
         return this.persistence.findOne(
             FIND_BY_UUID,
