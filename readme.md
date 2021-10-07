@@ -7,13 +7,13 @@ jdk11, swagger ui, springboot, and springboot jdbc template.
 
 ## Testing
 
-You can testing using maven
+You can test using maven
 
 ```
 mvn clean test
 ```
 
-It will run all the junit tests (including integration ones using H2 database).
+It will run all junit tests (including integration ones, using H2 database).
 
 ## Running the project
 
@@ -62,6 +62,8 @@ If you want to run it using the H2 in memory database (just to see how the proje
 ```
 mvn clean compile spring-boot:run -Dspring.profiles.active=test
 ```
+
+If you get any error due db h2 test profile, you can uncomment all the lines at the `src/main/resources/application.properties` and run it again.
 
 You be able to see the h2 content running on the web console `http://localhost:8080/h2`.
 
