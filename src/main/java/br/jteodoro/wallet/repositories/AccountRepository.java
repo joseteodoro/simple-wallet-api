@@ -6,12 +6,9 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
-import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
-import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
 import br.jteodoro.wallet.controllers.dto.AccountInput;
@@ -24,7 +21,9 @@ public class AccountRepository {
 
     private static final String FIND_BY_ID = "select * from `wallet`.`account` where accountId = :pk";
 
-    private static final String INSERT = "insert into `wallet`.`account` (identifier) values (?);";
+    private static final String FIND_BY_UUID = "select * from `wallet`.`account` where accountUuid = :uuid";
+
+    private static final String INSERT = "insert into `wallet`.`account` (identifier, accountUuid) values (:identifier, :accountUuid);";
 
     private final PersistenceFactory persistence;
 
@@ -33,26 +32,31 @@ public class AccountRepository {
             return Optional.empty();
         }
 
-        long pk = this.persistence.executeInsert(INSERT, "accountId" , pst -> {
-            pst.setString(1, account.getIdentifier());
-        });
-        return findOne(pk);
+        MapSqlParameterSource parameters = new MapSqlParameterSource()
+            .addValue("identifier", account.getIdentifier())
+            .addValue("accountUuid", account.getAccountUuid());
+
+        this.persistence.executeInsert(INSERT, parameters);
+        
+        SqlParameterSource namedParameters = new MapSqlParameterSource()
+            .addValue("uuid", account.getAccountUuid());
+    
+        return this.persistence.findOne(
+            FIND_BY_UUID,
+            namedParameters,
+            new BeanPropertyRowMapper<>(Account.class)
+        );
     }
 
     public Optional<Account> findOne(long pk) {
         SqlParameterSource namedParameters = new MapSqlParameterSource()
             .addValue("pk", pk);
-        // should be a better way to avoid flow control by exceptions!
-        // but I dont want to hit database twice
-        try {
-            return Optional.ofNullable(this.persistence.findOne(
-                FIND_BY_ID,
-                namedParameters,
-                new BeanPropertyRowMapper<>(Account.class)
-            ));
-        } catch (EmptyResultDataAccessException notFount) {
-            return Optional.empty();
-        }
+    
+        return this.persistence.findOne(
+            FIND_BY_ID,
+            namedParameters,
+            new BeanPropertyRowMapper<>(Account.class)
+        );
     }
 
 }

@@ -1,16 +1,21 @@
 package br.jteodoro.wallet.controllers.dto;
 
+import java.util.UUID;
+
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Data
-@Builder
 @NoArgsConstructor
-@AllArgsConstructor
 public class AccountInput {
 
     private String identifier;
+
+    @Setter(value = AccessLevel.NONE)
+    private final String accountUuid = UUID.randomUUID().toString();
 
 }

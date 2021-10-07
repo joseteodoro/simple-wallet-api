@@ -15,4 +15,6 @@ public class Account {
 
     private String identifier;
 
+    private String accountUuid;
+
 }
