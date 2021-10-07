@@ -29,6 +29,8 @@ Using docker-compose I strongly recommend to call a build first and after that t
 mvn clean install
 ```
 
+after that
+
 ```
 docker-compose up mysqldb
 ```
@@ -43,7 +45,7 @@ Why? Because mysql docker image brings up a temp server, shutdown that server an
 
 If you catch erros related with flyway with failed migrations, I suggest to remove the mysql image, the mysql container and run it again.
 
-### Running with maven
+### Running with maven and mysql
 
 You can run it locally using an already online mysql (update the `src/main/resources/application.properties` to match your credentials) and calling
 
@@ -53,8 +55,21 @@ mvn clean compile spring-boot:run
 
 It will bring the application app using your mysql database (be aware about the flyway running on every startup to make sure the database model is properly configured);
 
-If you want to run it using the H2 in memory database (just to see how the project works), you can uncomment all the lines at `src/main/resources/application.properties` and call the command
+### Running with maven and h2
+
+If you want to run it using the H2 in memory database (just to see how the project works), you can the command
 
 ```
-mvn clean compile spring-boot:run
+mvn clean compile spring-boot:run -Dspring.profiles.active=test
 ```
+
+You be able to see the h2 content running on the web console `http://localhost:8080/h2`.
+
+## Swagger
+
+This project has a swagger ui running at `http://localhost:8080/swagger-ui.html`, you can use it to test calls and list available commands.
+
+## Project structure
+
+- The project follows a default maven application structure, with src, tests, resources and so on;
+- You can find the flyway sql files at `src/main/resources/db/migration`;
