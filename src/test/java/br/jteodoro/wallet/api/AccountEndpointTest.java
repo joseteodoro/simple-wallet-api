@@ -19,7 +19,10 @@ import org.springframework.web.context.WebApplicationContext;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import java.io.UnsupportedEncodingException;
 import java.util.UUID;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -50,7 +53,29 @@ public class AccountEndpointTest {
             .content(body)
             .accept(MediaType.APPLICATION_JSON)
         )
-        .andExpect(status().isOk())
+        .andExpect(status().isCreated())
         .andExpect(jsonPath("$.identifier").value(uuid));
     }
+
+    @Test
+    public void whenGettingAValidAccountShouldReturnOkWithValues() throws Exception {
+        String uuid = UUID.randomUUID().toString();
+        String body = "{ \"identifier\": \"" + uuid + "\" }";
+        MvcResult response = mvc.perform(post("/v1/accounts")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(body)
+            .accept(MediaType.APPLICATION_JSON)
+        )
+        .andExpect(status().isCreated())
+        .andExpect(jsonPath("$.identifier").value(uuid))
+        .andReturn();
+
+        String id = ResponseHelper.getValueIdFromResponse(response);
+        mvc.perform(get("/v1/accounts/" + id)
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.accountId").value(id))
+                .andExpect(jsonPath("$.identifier").value(uuid));
+    }
+
 }

@@ -1,0 +1,6 @@
+# Deny list
+## everything!
+*
+
+# Allow list
+!./target/wallet*jar
