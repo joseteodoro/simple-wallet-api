@@ -37,6 +37,7 @@ public class AccountController {
     @Transactional
     @PostMapping(value = "", consumes = "application/json", produces = "application/json")
     public ResponseEntity<Account> create(@RequestBody AccountInput payload) {
+        // TODO o limit nao desconta o que foi gasto!
         return ResponseController.process(() -> this.repository.create(payload).get(), HttpStatus.CREATED);
     }
 }

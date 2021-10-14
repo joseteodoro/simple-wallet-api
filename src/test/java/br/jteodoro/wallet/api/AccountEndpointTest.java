@@ -57,7 +57,7 @@ public class AccountEndpointTest {
     @Test
     public void whenGettingAValidAccountShouldReturnOkWithValues() throws Exception {
         String uuid = UUID.randomUUID().toString();
-        String body = "{ \"identifier\": \"" + uuid + "\" }";
+        String body = "{ \"identifier\": \"" + uuid + "\", \"accountLimit\": \"100.00\" }";
         MvcResult response = mvc.perform(post("/v1/accounts")
             .contentType(MediaType.APPLICATION_JSON)
             .content(body)
@@ -72,7 +72,8 @@ public class AccountEndpointTest {
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.accountId").value(id))
-                .andExpect(jsonPath("$.identifier").value(uuid));
+                .andExpect(jsonPath("$.identifier").value(uuid))
+                .andExpect(jsonPath("$.accountLimit").value(100.0f));
     }
 
     @Test

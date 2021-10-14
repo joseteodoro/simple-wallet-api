@@ -15,4 +15,8 @@ public class AccountBalance {
 
     private Float balance;
 
+    public static AccountBalance of(Long accountLong, Float balance) {
+        return new AccountBalance(accountLong, balance);
+    }
+
 }

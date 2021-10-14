@@ -22,7 +22,8 @@ public class TransactionRepository {
     private static final String FIND_BY_ID = "select * from `wallet`.`trx` where trxId = :pk";
     private static final String FIND_BY_UUID = "select * from `wallet`.`trx` where trxUuid = :trxUuid";
     private static final String LIST_BY_ACCOUNT = "select * from `wallet`.`trx` where accountId = :account";
-    private static final String BALANCE_BY_ACCOUNT = "select accountId, SUM(value) as balance from `wallet`.`trx` where accountId = :account";
+    private static final String BALANCE_BY_ACCOUNT = "select accountId, SUM(value) as balance from `wallet`.`trx` where accountId = :account group by accountId";
+    private static final String BALANCE_WITH_LIMIT_BY_ACCOUNT = "select accountId, SUM(value) as balance from `wallet`.`trx` where accountId = :account group by accountId";
 
     private final PersistenceFactory persistence;
 
@@ -75,4 +76,5 @@ public class TransactionRepository {
             new BeanPropertyRowMapper<>(AccountBalance.class)
         );
     }
+
 }

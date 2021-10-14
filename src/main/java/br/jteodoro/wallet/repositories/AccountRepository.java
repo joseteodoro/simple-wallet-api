@@ -24,7 +24,7 @@ public class AccountRepository {
 
     private static final String FIND_BY_UUID = "select * from `wallet`.`account` where accountUuid = :uuid";
 
-    private static final String INSERT = "insert into `wallet`.`account` (identifier, accountUuid) values (:identifier, :accountUuid);";
+    private static final String INSERT = "insert into `wallet`.`account` (identifier, accountUuid, accountLimit) values (:identifier, :accountUuid, :accountLimit);";
 
     private final PersistenceFactory persistence;
 
@@ -36,6 +36,7 @@ public class AccountRepository {
         String uuid = UUID.randomUUID().toString();
         MapSqlParameterSource parameters = new MapSqlParameterSource()
             .addValue("identifier", account.getIdentifier())
+            .addValue("accountLimit", account.getAccountLimit())
             .addValue("accountUuid", uuid);
 
         this.persistence.executeInsert(INSERT, parameters);

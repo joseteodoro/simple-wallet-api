@@ -19,6 +19,6 @@ public class Account {
 
     private String accountUuid;
 
-    private BigDecimal limit;
+    private BigDecimal accountLimit;
 
 }

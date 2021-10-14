@@ -1,5 +1,6 @@
 package br.jteodoro.wallet.controllers.dto;
 
+import java.math.BigDecimal;
 import java.util.UUID;
 
 import lombok.AccessLevel;
@@ -14,5 +15,7 @@ import lombok.Setter;
 public class AccountInput {
 
     private String identifier;
+
+    private BigDecimal accountLimit = BigDecimal.ZERO;
 
 }

@@ -46,9 +46,9 @@ public class TransactionEndpointTest {
                 .build();
     }
 
-    private String createRandomAccount() throws Exception {
+    private String createRandomAccount(float accountLimit) throws Exception {
         String uuid = UUID.randomUUID().toString();
-        String body = "{ \"identifier\": \"" + uuid + "\" }";
+        String body = "{ \"identifier\": \"" + uuid + "\", \"accountLimit\": \"" + accountLimit + "\"  }";
         MvcResult response = mvc.perform(post("/v1/accounts")
             .contentType(MediaType.APPLICATION_JSON)
             .content(body)
@@ -62,7 +62,7 @@ public class TransactionEndpointTest {
 
     @Test
     public void whenCreatingAValidTrxShouldReturnCreated() throws Exception {
-        String accountId = createRandomAccount();
+        String accountId = createRandomAccount(0.f);
         String value = "23.41";
         String body = String.join("", 
           "{",
@@ -81,7 +81,7 @@ public class TransactionEndpointTest {
 
     @Test
     public void whenCreatingAValidDebitTrxShouldReturnPositiveValue() throws Exception {
-        String accountId = createRandomAccount();
+        String accountId = createRandomAccount(0.f);
         String value = "23.41";
         String body = String.join("",
           "{",
@@ -101,7 +101,7 @@ public class TransactionEndpointTest {
 
     @Test
     public void whenCreatingAValidCreditTrxShouldReturnPositiveValue() throws Exception {
-        String accountId = createRandomAccount();
+        String accountId = createRandomAccount(0.f);
         String value = "23.41";
         String body = String.join("",
           "{",
@@ -137,7 +137,7 @@ public class TransactionEndpointTest {
 
     @Test
     public void whenCreatingAValidTrxsShouldListThemProperly() throws Exception {
-        String accountId = createRandomAccount();
+        String accountId = createRandomAccount(0.f);
         String credit = "23.41";
         String debit = "11.17";
         createTrx(accountId, credit, "PAGAMENTO");
@@ -182,7 +182,7 @@ public class TransactionEndpointTest {
 
     @Test
     public void whenHaveValidTrxsShouldGetBalanceProperly() throws Exception {
-        String accountId = createRandomAccount();
+        String accountId = createRandomAccount(0.f);
         createTrx(accountId, "1000.00", "PAGAMENTO");
         createTrx(accountId, "100.00", "PAGAMENTO");
         createTrx(accountId, "100.00", "SAQUE");
@@ -195,6 +195,58 @@ public class TransactionEndpointTest {
             .andExpect(status().isOk())
             .andExpect(jsonPath("$.accountId").value(accountId))
             .andExpect(jsonPath("$.balance").value(400));
+    }
+
+    @Test
+    public void whenCreatingAValidTrxWithoutCreditWillFail() throws Exception {
+        String accountId = createRandomAccount(0.f);
+        String debit = "11.17";
+        String op  = "COMPRA_A_VISTA";
+        String credit = String.join("",
+          "{",
+          "\"accountId\": ", accountId, ",",
+          "\"operation\": ", "\"", op, "\"", ",",
+          "\"value\": ", debit,
+          "}"
+        );
+
+        mvc.perform(post("/v1/transactions")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(credit)
+            .accept(MediaType.APPLICATION_JSON)
+        )
+        .andExpect(status().isNotFound());
+
+        
+    }
+
+    @Test
+    public void whenCreatingAValidTrxWithCreditWillResturnCreated() throws Exception {
+        String accountId = createRandomAccount(11.17f);
+        String debit = "11.17";
+        String op  = "COMPRA_A_VISTA";
+        String body = String.join("",
+          "{",
+          "\"accountId\": ", accountId, ",",
+          "\"operation\": ", "\"", op, "\"", ",",
+          "\"value\": ", debit,
+          "}"
+        );
+
+        mvc.perform(post("/v1/transactions")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(body)
+            .accept(MediaType.APPLICATION_JSON)
+        )
+        .andExpect(status().isCreated());
+        
+        mvc.perform(post("/v1/transactions")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(body)
+            .accept(MediaType.APPLICATION_JSON)
+        )
+        .andExpect(status().isNotFound());
+        
     }
 
 }
