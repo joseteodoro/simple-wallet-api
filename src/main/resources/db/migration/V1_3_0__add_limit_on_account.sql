@@ -1,0 +1,1 @@
+ALTER TABLE `wallet`.`account` add accountLimit DECIMAL(12,2) default 0;
